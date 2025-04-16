@@ -35,6 +35,7 @@ Ruby version >= 3.2.2
 PostgreSQL
 
 # Installation Steps:
+```
 git clone
 cd cats_pic
 bundle install
@@ -42,43 +43,64 @@ rails active_storage:install
 rails db:migrate
 rails generate rspec:install
 rails db:create RAILS_ENV=test
+```
 
 
 # Starting the rails server:
+```
 rails s
+```
 
 # Running Testcases:
+```
 bundle exec rspec
+```
 
 # API Docs file:
 doc/schema.json
 the schema file can be used as an input of Swagger UI (https://github.com/swagger-api/swagger-ui)
 
 # Updating OpenAPI Schema file:
+```
 OPENAPI=1 bundle exec rspec
+```
 
 # Update the api annotation on controllers:
+```
 bundle exec chusaku
+```
 
 # Steps to test endpoints locally:
 
 1. Get all cats pics
+```
 curl --location 'http://localhost:3000/api/v1/cats_pic'
+```
 
 2. Get a specific cat pic stored with id 1
+```
 curl --location 'http://localhost:3000/api/v1/cats_pic/1'
+```
 
 3. Create a Cat pic
+```
 curl --location 'http://localhost:3000/api/v1/cats_pic' \
 --form 'title="pic 1"' \
 --form 'description="description"' \
 --form 'image=<!-- Attach Image -->'
+```
 
 4. Updates a cat pic stored with id 1
+```
 curl --location --request PUT 'http://localhost:3000/api/v1/cats_pic/1' \
 --form 'title="pic 2"' \
 --form 'description="description 2"' \
 --form 'image=<!-- Attach Image -->'
+```
 
 5. Delete a stored cat pic with id 2
+```
 curl --location --request DELETE 'http://localhost:3000/api/v1/cats_pic/2'
+```
+
+
