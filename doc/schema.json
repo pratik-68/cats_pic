@@ -1,0 +1,322 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "cats_pic",
+    "version": "1.0.0"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v1/cats_pic": {
+      "get": {
+        "summary": "index",
+        "tags": [
+          "Api::V1::CatsPic"
+        ],
+        "responses": {
+          "200": {
+            "description": "returns all cat pics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "description",
+                      "image"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": 38,
+                    "title": "Title",
+                    "description": "Image",
+                    "image": "http://www.example.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDMsInB1ciI6ImJsb2JfaWQifX0=--58b66cb61335efe7093a733ed2acf00275e283a4/sample.jpg"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create",
+        "tags": [
+          "Api::V1::CatsPic"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "image"
+                ]
+              },
+              "example": {
+                "title": "Cat 1",
+                "description": "Cute",
+                "image": "sample.jpg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "creates a cat pic with image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "image"
+                  ]
+                },
+                "example": {
+                  "id": 40,
+                  "title": "Cat 1",
+                  "description": "Cute",
+                  "image": "http://www.example.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDUsInB1ciI6ImJsb2JfaWQifX0=--7f0f8dfe3de187a0d9fc92800949c078353043f1/sample.jpg"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cats_pic/{id}": {
+      "delete": {
+        "summary": "destroy",
+        "tags": [
+          "Api::V1::CatsPic"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "deletes the cat pic"
+          }
+        }
+      },
+      "get": {
+        "summary": "show",
+        "tags": [
+          "Api::V1::CatsPic"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 9999
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a single cat pic",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "image"
+                  ]
+                },
+                "example": {
+                  "id": 39,
+                  "title": "Pic 1",
+                  "description": "Image 1",
+                  "image": "http://www.example.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDQsInB1ciI6ImJsb2JfaWQifX0=--b9e7899f36d44527cb4bcbdbc466d5487475f18a/sample.jpg"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "return 404 if not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "Not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update",
+        "tags": [
+          "Api::V1::CatsPic"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 41
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "image"
+                ]
+              },
+              "example": {
+                "title": "Pic 2",
+                "description": "Image 2",
+                "image": "sample.jpg"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "creates a cat pic with image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "image"
+                  ]
+                },
+                "example": {
+                  "id": 41,
+                  "title": "Pic 2",
+                  "description": "Image 2",
+                  "image": "http://www.example.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDcsInB1ciI6ImJsb2JfaWQifX0=--8affa47d87df29c4b48e4006ac040f6021bb0263/sample.jpg"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
